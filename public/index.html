@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f5f1">
+    <meta name="description" content="Give your campus finds a second life.">
+    <title>Commonroom — Dorm Marketplace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Commonroom home">
+        <span class="brand-mark" aria-hidden="true">c.</span>
+        <span>commonroom</span>
+      </a>
+      <div class="topbar-right">
+        <label class="name-field">
+          <span class="sr-only">Your name for claiming and listings</span>
+          <span aria-hidden="true">◉</span>
+          <input id="student-name" maxlength="40" placeholder="Your name" autocomplete="name">
+        </label>
+        <button class="button button-dark" id="open-listing" type="button">
+          <span aria-hidden="true">＋</span> List an item
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> THE CAMPUS CIRCLE</p>
+          <h1>Good stuff.<br><span>New home.</span></h1>
+          <p class="hero-description">Find what you need, pass on what you don't.<br>All just around the corner.</p>
+          <div class="hero-bottom">
+            <div class="avatar-stack" aria-hidden="true">
+              <span class="avatar avatar-a">M</span><span class="avatar avatar-b">J</span><span class="avatar avatar-c">A</span><span class="avatar avatar-d">+</span>
+            </div>
+            <span>Made for campus life</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <span class="art-sun"></span>
+          <span class="art-orbit orbit-one"></span><span class="art-orbit orbit-two"></span>
+          <div class="art-card art-card-book"><span>📚</span><i>GOOD READS</i></div>
+          <div class="art-card art-card-lamp"><span>💡</span><i>BRIGHT IDEAS</i></div>
+          <div class="art-card art-card-plant"><span>🪴</span><i>NEW GROWTH</i></div>
+          <span class="art-spark spark-one">✳</span><span class="art-spark spark-two">✦</span>
+        </div>
+        <div class="hero-ribbon"><span>PASS IT ON</span><span aria-hidden="true">✳</span><span>KEEP IT LOCAL</span><span aria-hidden="true">✳</span><span>PASS IT ON</span></div>
+      </section>
+
+      <section class="marketplace" aria-labelledby="market-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">THE GOOD FINDS</p>
+            <h2 id="market-title">Around the dorm</h2>
+          </div>
+          <div class="market-stats" aria-label="Marketplace counts">
+            <span><b id="available-count">0</b> available</span>
+            <span class="stats-divider"></span>
+            <span><b id="reserved-count">0</b> claimed</span>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <span class="sr-only">Search listings</span>
+            <input id="search-input" type="search" placeholder="Search finds..." autocomplete="off">
+            <kbd>⌘ K</kbd>
+          </label>
+          <div class="category-list" id="category-list" aria-label="Filter by category">
+            <button class="category-chip active" data-category="All" type="button">Everything</button>
+            <button class="category-chip" data-category="Books" type="button">Books</button>
+            <button class="category-chip" data-category="Furniture" type="button">Furniture</button>
+            <button class="category-chip" data-category="Appliances" type="button">Appliances</button>
+            <button class="category-chip" data-category="Electronics" type="button">Electronics</button>
+            <button class="category-chip" data-category="Other" type="button">Other</button>
+          </div>
+        </div>
+
+        <div class="listing-grid" id="listing-grid" aria-live="polite"></div>
+        <div class="empty-state" id="empty-state" hidden>
+          <span aria-hidden="true">✳</span>
+          <h3>No finds just yet</h3>
+          <p>Try a different search, or be the first to list something.</p>
+          <button class="button button-outline" id="empty-listing" type="button">List an item</button>
+        </div>
+        <p class="demo-note"><span aria-hidden="true">✦</span> A small campus, a little less waste. Pickups happen in person.</p>
+      </section>
+    </main>
+
+    <footer class="footer"><span class="brand-mark brand-mark-small">c.</span><span>Good things go around.</span><span class="footer-right">A campus-only prototype <span aria-hidden="true">♥</span></span></footer>
+
+    <dialog class="listing-dialog" id="listing-dialog" aria-labelledby="dialog-title">
+      <form id="listing-form">
+        <div class="dialog-heading">
+          <div><p class="eyebrow">PASS IT ON</p><h2 id="dialog-title">List a good thing</h2></div>
+          <button class="icon-button" type="button" data-close-dialog aria-label="Close dialog">×</button>
+        </div>
+        <label class="form-label">What are you passing on?
+          <input name="title" maxlength="80" required placeholder="e.g. Desk lamp">
+        </label>
+        <label class="form-label">A little more about it
+          <textarea name="description" maxlength="300" rows="3" placeholder="Condition, pickup spot, anything helpful..."></textarea>
+        </label>
+        <div class="form-row">
+          <label class="form-label">Category
+            <select name="category" required>
+              <option value="Books">Books</option><option value="Furniture">Furniture</option>
+              <option value="Appliances">Appliances</option><option value="Electronics">Electronics</option><option value="Other">Other</option>
+            </select>
+          </label>
+          <label class="form-label">Price
+            <div class="price-input"><span>$</span><input name="price" type="number" min="0" max="100000" step="0.01" value="0" required></div>
+            <span class="field-hint">Leave at 0 to list for free</span>
+          </label>
+        </div>
+        <p class="form-error" id="form-error" role="alert"></p>
+        <button class="button button-dark button-wide" type="submit">Add to the circle <span aria-hidden="true">↗</span></button>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
